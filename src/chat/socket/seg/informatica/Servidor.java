@@ -1,8 +1,10 @@
 package chat.socket.seg.informatica;
 
 import java.io.DataInputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Base64;
 import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,7 +36,7 @@ public class Servidor extends Observable implements Runnable {
 				
 				//leyendo el mensaje recibido
 				String mensaje = in.readUTF();
-				System.out.println(mensaje);
+				System.out.println(encriptar(mensaje));
 				
 				this.setChanged();
 				this.notifyObservers(mensaje);
@@ -48,4 +50,12 @@ public class Servidor extends Observable implements Runnable {
 			Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
+	private static String encriptar(String s) throws UnsupportedEncodingException {
+		return Base64.getEncoder().encodeToString(s.getBytes("utf-8"));
+	}
+//
+//	private static String desencriptar(String s) throws UnsupportedEncodingException {
+//		byte[] decode = Base64.getDecoder().decode(s.getBytes());
+//		return new String(decode, "utf-8");
+//	}
 }

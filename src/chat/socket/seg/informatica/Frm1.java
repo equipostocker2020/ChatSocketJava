@@ -1,5 +1,7 @@
 package chat.socket.seg.informatica;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -35,7 +37,12 @@ public class Frm1 extends javax.swing.JFrame implements Observer {
         btnEnviar.setText("Enviar");
         btnEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEnviarActionPerformed(evt);
+                try {
+					btnEnviarActionPerformed(evt);
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
  
@@ -67,12 +74,11 @@ public class Frm1 extends javax.swing.JFrame implements Observer {
         pack();
     }                       
  
-    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {                                          
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) throws UnsupportedEncodingException {                                          
  
         String mensaje = "1: " + this.txtTextoEnviar.getText() + "\n";
- 
         this.txtTexto.append(mensaje);
- 
+//        mensaje = encriptar(mensaje);
         Cliente c = new Cliente(6000, mensaje);
         Thread t = new Thread(c);
         t.start();
@@ -94,4 +100,5 @@ public class Frm1 extends javax.swing.JFrame implements Observer {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtTexto;
     private javax.swing.JTextField txtTextoEnviar;
+   
 }
