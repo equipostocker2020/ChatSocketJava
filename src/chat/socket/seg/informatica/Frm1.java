@@ -100,5 +100,4 @@ public class Frm1 extends javax.swing.JFrame implements Observer {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtTexto;
     private javax.swing.JTextField txtTextoEnviar;
-   
 }

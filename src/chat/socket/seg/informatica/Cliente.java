@@ -17,7 +17,7 @@ public class Cliente implements Runnable {
 		this.puerto = puerto;
 		this.mensaje = mensaje;
 	}
-
+	
 	@Override
 	public void run() {
 		// host server
